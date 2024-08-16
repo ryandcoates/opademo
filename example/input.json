@@ -1,0 +1,8 @@
+{
+    "input": {
+      "method": "GET",
+      "path": ["weatherforecast"],
+      "user": "anonymous"
+    }
+  }
+  

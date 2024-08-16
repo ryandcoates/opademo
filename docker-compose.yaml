@@ -1,0 +1,22 @@
+services:
+  authz:
+    image: openpolicyagent/opa:latest
+    container_name: authz
+    ports:
+      - "8181:8181"
+    command:
+      - "run"
+      - "--server"
+      - "--log-level=debug"
+      - "/policies"
+    volumes:
+      - ./example:/policies
+
+  app:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8080"
+    environment:
+      - AUTH_ENDPOINT=http://authz:8181/v1/data/example/allow
